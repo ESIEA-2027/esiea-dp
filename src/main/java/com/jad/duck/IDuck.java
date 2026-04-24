@@ -1,4 +1,6 @@
-package com.jad;
+package com.jad.duck;
+
+import com.jad.duck.behavior.IBehaviorFly;
 
 public interface IDuck {
     IBehaviorFly getBehaviorFly();
@@ -10,4 +12,6 @@ public interface IDuck {
     String quack();
 
     String fly();
+
+    String toPrettyString();
 }

@@ -1,4 +1,6 @@
-package com.jad;
+package com.jad.duck.behavior;
+
+import com.jad.duck.IDuck;
 
 public enum BehaviorFly implements IBehaviorFly {
     NORMAL_FLY_ENGLISH((duck) -> "I'm flying"),

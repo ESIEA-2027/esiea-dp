@@ -1,4 +1,6 @@
-package com.jad;
+package com.jad.duck.realduck;
+
+import com.jad.duck.behavior.BehaviorFly;
 
 public class ChallansDuck extends AbstractDuck {
     public ChallansDuck(final String name) {
@@ -8,5 +10,12 @@ public class ChallansDuck extends AbstractDuck {
     @Override
     public String quack() {
         return "Coin coin";
+    }
+
+    @Override
+    public String toPrettyString() {
+        return "    \n" +
+                "(°°)\n" +
+                " || \n";
     }
 }

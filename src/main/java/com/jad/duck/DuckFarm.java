@@ -1,4 +1,6 @@
-package com.jad;
+package com.jad.duck;
+
+import com.jad.duck.realduck.AbstractDuck;
 
 import java.util.ArrayList;
 

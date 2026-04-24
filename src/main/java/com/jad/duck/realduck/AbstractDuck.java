@@ -1,4 +1,7 @@
-package com.jad;
+package com.jad.duck.realduck;
+
+import com.jad.duck.IDuck;
+import com.jad.duck.behavior.IBehaviorFly;
 
 public abstract class AbstractDuck implements IDuck {
     private final String name;

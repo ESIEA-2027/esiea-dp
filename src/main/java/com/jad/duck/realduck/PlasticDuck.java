@@ -1,4 +1,4 @@
-package com.jad;
+package com.jad.duck.realduck;
 
 public class PlasticDuck extends AbstractDuck {
     public PlasticDuck(final String name) {
@@ -9,4 +9,12 @@ public class PlasticDuck extends AbstractDuck {
     public String quack() {
         return "Pouet pouet";
     }
+
+    @Override
+    public String toPrettyString() {
+        return "    \n" +
+                "(°°)\n" +
+                " () \n";
+    }
+
 }

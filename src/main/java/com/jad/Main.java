@@ -1,38 +1,47 @@
 package com.jad;
 
+import com.jad.duck.IDuck;
+import com.jad.duck.duckdecorator.HairDuckDecorator;
+import com.jad.duck.duckdecorator.LeftOneEyedDuckDecorator;
+import com.jad.duck.duckdecorator.TatooRightDuckDecorator;
+import com.jad.duck.duckdecorator.VampireDuckDecorator;
+import com.jad.duck.realduck.Cayuga;
+import com.jad.duck.realduck.Mallard;
+import com.jad.duck.realduck.PlasticDuck;
+
 public enum Main {
     ;
 
     public static void main(String[] args) {
-        Cayuga carole = new Cayuga("Carole");
-        Mallard donald = new Mallard("Donald");
-        ChallansDuck barnabe = new ChallansDuck("Barnabé");
-        PlasticDuck sophie = new PlasticDuck("Sophie");
+        IDuck carole = new Cayuga("Carole");
+        IDuck donald = new Mallard("Donald");
+        IDuck sophie = new PlasticDuck("Sophie");
 
-        DuckFarm ducks = new DuckFarm();
-        ducks.add(carole);
-        ducks.add(donald);
-        ducks.add(sophie);
-        ducks.add(barnabe);
+        System.out.println(carole.toPrettyString());
+        System.out.println(donald.toPrettyString());
 
-        ducks.quackAll();
-        System.out.println("-------------");
-        ducks.flyAll();
+        // Carole vient de se faire mordre par un vampire
+        carole = new VampireDuckDecorator(carole);
+        System.out.println(carole.toPrettyString());
 
-        // Une fée vient voir Sophie, car c'est une très gentille canne en plastique.
-        // Pour la remercier d'être si gentille, la fée lui offre une cape magique.
-        // Sophie est désormais capable de voler.
-        System.out.println("-------------");
-        sophie.setBehaviorFly((duck) -> "Super" + duck.getName() + " : Je vole comme superman avec ma cape magique");
-        ducks.flyAll(); // Sophie doit maintenant dire "Sophie : Je vole comme superman avec ma cape magique
+        // Donald est allé en Turquie pour se faire des implants
+        donald = new HairDuckDecorator(donald);
+        System.out.println(donald.toPrettyString());
 
-        // Barnabé fait un stage Erasmus chez Carole
-        System.out.println("-------------");
-        ducks.quackAll(); // Barnabé doit maintenant dire "Barnabé : I am flying
+        // Carole va mordre Donald, qui donc va se transformer lui aussi en vampire
+        donald = new VampireDuckDecorator(donald);
+        System.out.println(donald.toPrettyString());
 
-        // Donald jaloux de Sophie, veut, lui aussi, avoir une cape, il s'en fait une
-        System.out.println("-------------");
-        donald.setBehaviorFly(sophie.getBehaviorFly());
-        ducks.flyAll(); // Donald doit maintenant dire "Donald : Je vole comme superman avec ma cape magique
+        // Donald s'est fait tatouage sur la joue droite
+        donald = new TatooRightDuckDecorator(donald);
+        System.out.println(donald.toPrettyString());
+
+        // Donald s'est bagarré et s'est fait crever l'œil gauche
+        donald = new LeftOneEyedDuckDecorator(donald);
+        System.out.println(donald.toPrettyString());
+        System.out.println(sophie.quack());
+        sophie = new VampireDuckDecorator(sophie);
+        System.out.println(sophie.quack());
+
     }
 }
