@@ -1,5 +1,6 @@
 package com.jad;
 
+// Reste à faire le strategy sur le quack
 public enum Main {
     ;
 
@@ -25,6 +26,7 @@ public enum Main {
         System.out.println("-------------");
         sophie.setBehaviorFly((duck) -> "Super" + duck.getName() + " : Je vole comme superman avec ma cape magique");
         ducks.flyAll(); // Sophie doit maintenant dire "Sophie : Je vole comme superman avec ma cape magique
+
 
         // Barnabé fait un stage Erasmus chez Carole
         System.out.println("-------------");
