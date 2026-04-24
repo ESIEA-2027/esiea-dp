@@ -11,7 +11,7 @@ public class DuckFarm extends ArrayList<AbstractDuck> {
 
     public void flyAll() {
         for (AbstractDuck duck : this) {
-            System.out.println(duck.getName() + " : " + duck.fly());
+            System.out.println(duck.fly());
         }
     }
 }

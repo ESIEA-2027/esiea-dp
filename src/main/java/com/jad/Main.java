@@ -5,7 +5,7 @@ public enum Main {
 
     public static void main(String[] args) {
         Cayuga carole = new Cayuga("Carole");
-        Mallard donald = new Mallard("Dolnald");
+        Mallard donald = new Mallard("Donald");
         ChallansDuck barnabe = new ChallansDuck("Barnabé");
         PlasticDuck sophie = new PlasticDuck("Sophie");
 
@@ -23,14 +23,16 @@ public enum Main {
         // Pour la remercier d'être si gentille, la fée lui offre une cape magique.
         // Sophie est désormais capable de voler.
         System.out.println("-------------");
+        sophie.setBehaviorFly((duck) -> "Super" + duck.getName() + " : Je vole comme superman avec ma cape magique");
         ducks.flyAll(); // Sophie doit maintenant dire "Sophie : Je vole comme superman avec ma cape magique
 
         // Barnabé fait un stage Erasmus chez Carole
         System.out.println("-------------");
         ducks.quackAll(); // Barnabé doit maintenant dire "Barnabé : I am flying
 
-        // Donald jaloux de Sophie, vuet lui aussi avoir une cape, il s'en fait une
+        // Donald jaloux de Sophie, veut, lui aussi, avoir une cape, il s'en fait une
         System.out.println("-------------");
+        donald.setBehaviorFly(sophie.getBehaviorFly());
         ducks.flyAll(); // Donald doit maintenant dire "Donald : Je vole comme superman avec ma cape magique
     }
 }
