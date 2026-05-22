@@ -5,6 +5,7 @@ import com.jad.duck.duckdecorator.HairDuckDecorator;
 import com.jad.duck.duckdecorator.LeftOneEyedDuckDecorator;
 import com.jad.duck.duckdecorator.TatooRightDuckDecorator;
 import com.jad.duck.duckdecorator.VampireDuckDecorator;
+import com.jad.duck.proxy.ProxyDuck;
 import com.jad.duck.realduck.Cayuga;
 import com.jad.duck.realduck.Mallard;
 import com.jad.duck.realduck.PlasticDuck;
@@ -13,9 +14,9 @@ public enum Main {
     ;
 
     public static void main(String[] args) {
-        IDuck carole = new Cayuga("Carole");
+        IDuck carole = new ProxyDuck(new Cayuga("Carole"));
         IDuck donald = new Mallard("Donald");
-        IDuck sophie = new PlasticDuck("Sophie");
+        IDuck sophie = new TatooRightDuckDecorator(new HairDuckDecorator(new PlasticDuck("Sophie")));
 
         System.out.println(carole.toPrettyString());
         System.out.println(donald.toPrettyString());
@@ -42,6 +43,5 @@ public enum Main {
         System.out.println(sophie.quack());
         sophie = new VampireDuckDecorator(sophie);
         System.out.println(sophie.quack());
-
     }
 }

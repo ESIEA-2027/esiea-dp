@@ -1,0 +1,37 @@
+@startuml
+actor Main
+participant "VampireDuckDecorator" as VampireDuck
+participant "TatooRightDuckDecorator" as TatooRightDuck
+participant "HairDuckDecorator" as HairDuck
+participant "PlasticDuck" as PlasticDuck
+
+Main -> VampireDuck : quack()
+activate VampireDuck
+VampireDuck -> VampireDuck : quackDecorated(String)
+activate VampireDuck
+VampireDuck -> TatooRightDuck : quack()
+activate TatooRightDuck
+TatooRightDuck -> TatooRightDuck : quackDecorated(String)
+activate TatooRightDuck
+TatooRightDuck -> HairDuck : quack()
+activate HairDuck
+HairDuck -> HairDuck : quackDecorated(String)
+activate HairDuck
+HairDuck -> PlasticDuck : quack()
+activate PlasticDuck
+PlasticDuck --> HairDuck : String (ex: "Couic")
+deactivate PlasticDuck
+HairDuck --> HairDuck : String (ex: "Couic")
+deactivate HairDuck
+HairDuck --> TatooRightDuck : String (ex: "Couic")
+deactivate HairDuck
+TatooRightDuck --> TatooRightDuck : String (ex: "Couic")
+deactivate TatooRightDuck
+TatooRightDuck --> VampireDuck : String (ex: "Couic")
+deactivate TatooRightDuck
+VampireDuck --> VampireDuck : String (ex: "Couic")
+deactivate VampireDuck
+VampireDuck --> Main : String (ex: "Couic de Vampire")
+deactivate VampireDuck
+@enduml
+
