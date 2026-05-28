@@ -1,42 +1,31 @@
 package com.jad;
 
-import com.jad.plant.Garden;
-import com.jad.plant.Plant;
-import com.jad.plant.PlantGrower;
-import com.jad.plant.PlantState;
+import com.jad.plant.*;
 
 public enum Main {
     ;
 
     public static void main(String[] args) {
+        PlantGrowerMatchesExpression isTomateVerteSeed = PlantGrowerMatchesExpression.make("Tomate",
+                                                                                           "vert",
+                                                                                           PlantState.SEED);
+        PlantGrowerMatchesExpression isSeed = PlantGrowerMatchesExpression.make("", "", PlantState.SEED);
+        PlantGrowerMatchesExpression isSmall = PlantGrowerMatchesExpression.make("", "", PlantState.SMALL);
+        PlantGrowerMatchesExpression isMedium = PlantGrowerMatchesExpression.make("", "", PlantState.MEDIUM);
+        PlantGrowerMatchesExpression isLarge = PlantGrowerMatchesExpression.make("", "", PlantState.LARGE);
+        PlantGrowerMatchesExpression isDead = PlantGrowerMatchesExpression.make("", "", PlantState.DEAD);
 
-        PlantGrower plantGrower = new PlantGrower(
-                plant -> plant.getColor().equals("vert")
-                        && plant.getName().equals("Tomate")
-                        && plant.getPlantstate().equals(PlantState.SEED),
-                plant -> plant.setPlantstate(PlantState.DEAD)
-        );
-        plantGrower.addNext(new PlantGrower(
-                plant -> plant.getPlantstate().equals(PlantState.SEED),
-                plant -> plant.setPlantstate(PlantState.SMALL))
-        );
-        plantGrower.addNext(new PlantGrower(
-                plant -> plant.getPlantstate().equals(PlantState.SMALL),
-                plant -> plant.setPlantstate(PlantState.MEDIUM))
-        );
-        plantGrower.addNext(new PlantGrower(
-                plant -> plant.getPlantstate().equals(PlantState.MEDIUM),
-                plant -> plant.setPlantstate(PlantState.LARGE))
-        );
-        plantGrower.addNext(new PlantGrower(
-                plant -> plant.getPlantstate().equals(PlantState.LARGE),
-                plant -> plant.setPlantstate(PlantState.DEAD))
-        );
-        plantGrower.addNext(new PlantGrower(
-                plant -> plant.getPlantstate().equals(PlantState.DEAD),
-                plant -> {
-                })
-        );
+        //PlantGrowerGrowsExpression increasePlantState = PlantGrowerGrowsExpressionParser.parse("State+");
+        PlantGrowerGrowsExpression increasePlantState = new PlantGrowerGrowsExpressionPlanteStateIncrease();
+        PlantGrowerGrowsExpression noOp = new PlantGrowerGrowsExpressionNoOp();
+        PlantGrowerGrowsExpression kill = new PlantGrowerGrowsExpressionKill();
+
+        PlantGrower plantGrower = new PlantGrower(isTomateVerteSeed::interpret, kill::interpret);
+        plantGrower.addNext(new PlantGrower(isSeed::interpret, increasePlantState::interpret));
+        plantGrower.addNext(new PlantGrower(isSmall::interpret, increasePlantState::interpret));
+        plantGrower.addNext(new PlantGrower(isMedium::interpret, increasePlantState::interpret));
+        plantGrower.addNext(new PlantGrower(isLarge::interpret, increasePlantState::interpret));
+        plantGrower.addNext(new PlantGrower(isDead::interpret, noOp::interpret));
 
         Garden garden = new Garden(plantGrower);
         garden.add(new Plant("Tomate", "rouge"));
