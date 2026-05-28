@@ -1,5 +1,7 @@
 package com.jad.person;
 
+import com.jad.divinity.AbstractDivinity;
+
 public class Peon extends AbstractPerson {
     private final int sonsCount;
 
@@ -10,5 +12,9 @@ public class Peon extends AbstractPerson {
 
     public int getSonsCount() {
         return this.sonsCount;
+    }
+    @Override
+    public void visitedBy(final AbstractDivinity divinity) {
+        divinity.visitPerson(this);
     }
 }

@@ -1,5 +1,7 @@
 package com.jad.person;
 
+import com.jad.divinity.AbstractDivinity;
+
 public class Priest extends AbstractPerson {
     private final Diocese diocese;
 
@@ -14,5 +16,9 @@ public class Priest extends AbstractPerson {
 
     public int getDiocesePopulation() {
         return this.diocese.getCountPeople();
+    }
+    @Override
+    public void visitedBy(final AbstractDivinity divinity) {
+        divinity.visitPerson(this);
     }
 }

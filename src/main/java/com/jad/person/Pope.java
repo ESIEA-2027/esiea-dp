@@ -1,5 +1,7 @@
 package com.jad.person;
 
+import com.jad.divinity.AbstractDivinity;
+
 public class Pope extends AbstractPerson {
     private final Country administeredCountry;
 
@@ -14,5 +16,9 @@ public class Pope extends AbstractPerson {
 
     public int getCountryAdministeredPopulation() {
         return this.administeredCountry.getCountPeople();
+    }
+    @Override
+    public void visitedBy(final AbstractDivinity divinity) {
+        divinity.visitPerson(this);
     }
 }
