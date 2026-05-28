@@ -1,6 +1,6 @@
 package com.jad.person;
 
-public class Peon extends AbstractPerson {
+public final class Peon extends AbstractPerson {
     private final int sonsCount;
 
     public Peon(final String name, final int sonsCount) {

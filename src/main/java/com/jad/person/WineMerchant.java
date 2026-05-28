@@ -1,6 +1,6 @@
 package com.jad.person;
 
-public class WineMerchant extends AbstractPerson {
+public final class WineMerchant extends AbstractPerson {
     private final int wealth;
 
     public WineMerchant(final String name, final int wealth) {

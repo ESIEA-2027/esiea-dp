@@ -1,6 +1,6 @@
 package com.jad.person;
 
-public class Priest extends AbstractPerson {
+public final class Priest extends AbstractPerson {
     private final Diocese diocese;
 
     public Priest(final String name, final Diocese diocese) {

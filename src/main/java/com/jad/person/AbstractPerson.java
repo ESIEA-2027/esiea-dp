@@ -1,6 +1,7 @@
 package com.jad.person;
 
-abstract class AbstractPerson implements Person {
+sealed public abstract class AbstractPerson implements Person
+        permits King, Peon, Pope, Priest, Stranger, WineMerchant {
     private final String name;
     private final SocialStatus socialStatus;
 

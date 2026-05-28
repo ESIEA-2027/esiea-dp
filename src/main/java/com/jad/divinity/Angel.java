@@ -1,7 +1,6 @@
 package com.jad.divinity;
 
-import com.jad.person.Person;
-import com.jad.person.SocialStatus;
+import com.jad.person.*;
 
 public class Angel extends AbstractDivinity {
     @Override
@@ -16,5 +15,16 @@ public class Angel extends AbstractDivinity {
         // Si c'est un étranger, on lui dit "Convertis-toi ou meurs !"
         // Si c'est un marchand de vin, on lui dit "Prie et fais un gros don à l'église !"
         // Instanceof et typeOf sont interdits
+
+        System.out.println(switch (person) {
+            case King king ->
+                    "Vous êtes béni par les cieux votre Majesté et votre royaume " + king.getCountryRegentedName() + " aussi !";
+            case Peon peon -> "Prie et va bosser ! Demande à tes " + peon.getSonsCount() + " de faire pareil !";
+            case Priest priest -> "Demande à tes ouailles de prier et d'aller bosser !";
+            case Pope pope -> "Vous êtes béni par les cieux votre Sainteté !";
+            case Stranger stranger -> "Convertis-toi ou meurs !";
+            case WineMerchant wineMerchant -> "Prie et fais un gros don à l'église !";
+            default -> throw new IllegalStateException("Unexpected value: " + person);
+        });
     }
 }

@@ -1,6 +1,6 @@
 package com.jad.person;
 
-public class Stranger extends AbstractPerson {
+public final  class Stranger extends AbstractPerson {
     public Stranger(final String name) {
         super(name, SocialStatus.UNBELIEVER);
     }

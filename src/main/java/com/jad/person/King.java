@@ -1,6 +1,6 @@
 package com.jad.person;
 
-public class King extends AbstractPerson {
+public final class King extends AbstractPerson {
     private final Country regentedCountry;
 
     public King(final String name, final Country regentedCountry) {
